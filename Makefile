@@ -1,5 +1,5 @@
 hoon-ref.ps: hoon-ref.txt
-	enscript -f Courier9 -r3 $< -o $@
+	enscript -3 -r $< -o $@
 
 clean:
 	rm -f hoon-ref.ps

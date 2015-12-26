@@ -1,4 +1,5 @@
-# vim:textwidth=45:formatoptions+=t
+           HOON REFERENCE CARD
+                  2015
 
 Pronunciation
 
@@ -57,7 +58,7 @@ col: Tuple construction
 :_  q  p     reversed tuple of two elements
 :+  p  q  r  tuple of three elements
 :^  p  q     tuple of four elements
-    r  s 
+    r  s
 :*  i.p      arbitrary length tuple
     i.t.p    [i.p i.t.p i.t.t.p]
     i.t.t.p
@@ -70,3 +71,13 @@ col: Tuple construction
 
 
 cen: Pulling arms and wings
+
+%=
+%_
+%*
+
+%-
+%+
+%^
+
+# vim:textwidth=45:formatoptions+=t
