@@ -1,0 +1,72 @@
+# vim:textwidth=45:formatoptions+=t
+
+Pronunciation
+
+ace  space         gap  newline or 2 spaces
+bar  |   dot  .    ket  ^    ser  ]
+bas  \   fas  /    lus  +    sig  ~
+buc  $   gal  <    pam  &    soq  '
+cab  _   gar  >    pat  @    tar  *
+cen  %   hax  #    pel  (    tec  `
+col  :   hep  -    per  )    tis  =
+com  ,   kel  {    sel  [    wut  ?
+doq  "   ker  }    sem  ;    zap  !
+
+--  shed   ->  lark   +>  dark   ==  stet
+++  slus   -<  lush   +<  dish
+
+
+bar: Core construction
+
+|%               generic core with arms
+    ++  p.n.q    dry or wet arms
+      q.n.q
+    +-  p.n.l.q
+      q.n.l.q
+    --
+|_  p            door with sample
+    ++  p.n.q    dry arms only
+      q.n.q
+    --
+|/  p            door with tile
+    +-  p.n.q    wet arms
+      q.n.q
+    --
+|^  p            kicked book
+    ++  p.n.q    like |- with arms
+      q.n.q
+    --
+|=  p  q    dry gate, arm is $
+|+  p  q    dry gate, sample p is private
+|*  p  q    wet gate, arm is $
+|.  p       generic dry trap (thunk)
+|-  p       kick after construction (loop)
+|?  p       dry trap, payload is hidden
+
+
+dot: Nock operators
+
+.+  +(p)    increment p
+.=  =(p q)  test p and q for equality
+.^  p       load file from global namespace
+.*  p       execute Nock expression
+
+col: Tuple construction
+
+:-  [p q]    tuple of two elements
+:_  q  p     reversed tuple of two elements
+:+  p  q  r  tuple of three elements
+:^  p  q     tuple of four elements
+    r  s 
+:*  i.p      arbitrary length tuple
+    i.t.p    [i.p i.t.p i.t.t.p]
+    i.t.t.p
+    ==
+:~  i.p      null-terminated tuple
+    i.t.p    ~[i.p it.p i.t.t.p]
+    i.t.t.p
+    ==
+;/  p        tuple for interpolation
+
+
+cen: Pulling arms and wings
