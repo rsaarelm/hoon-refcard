@@ -64,7 +64,7 @@ col: Tuple construction
     i.t.t.p
     ==
 :~  i.p      null-terminated tuple
-    i.t.p    ~[i.p it.p i.t.t.p]
+    i.t.p    ~[i.p i.t.p i.t.t.p]
     i.t.t.p
     ==
 ;/  p        tuple for interpolation
@@ -72,9 +72,18 @@ col: Tuple construction
 
 cen: Pulling arms and wings
 
-%=
-%_
-%*
+%=  p           eval p with changes from q
+    p1.q  q1.q  %=(p p1.q q1.q, p2.q q2.q)
+    p2.q  q2.q  p(p1.q q1.q, p2.q q2.q)
+    ==
+%_  p           eval, then cast back to type
+    p1.q  q1.q  %_(p p1.q q1.q, p2.q q2.q)
+    p2.q  q2.q
+    ==
+%*  p  q        pull p from q with changes r
+    p1.r  q1.r  %*(p q p1.r q1.r, p2.r q2.r)
+    p2.r  q2.r
+    ==
 
 %-
 %+
