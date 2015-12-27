@@ -99,9 +99,6 @@ cen: Pulling arms and wings
 %+  p  q  r     slam p with two arguments
 %^  p  q  r  s  slam p with three arguments
 
-%cnzy p         pull limb p from subject
-%cnzz p         pull wing p from subject
-
 
 dot: Nock operators
 
@@ -156,7 +153,6 @@ sig: Hints to interpreter
 ;+  +{a}        interpolate a manx
 ;*  *{a}        interpolate a list of marl
 ;%  %{p}        pass child nodes to gate
-%smzz  ;p;      sail templating
 
 
 tis: Subject modification
