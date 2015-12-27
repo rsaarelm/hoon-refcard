@@ -175,11 +175,32 @@ tis: Subject modification
 
 wut: Conditionals
 
-?:  p  q  r     if p then q else r
-?.
-?-
-?+
-?=
+?:  p  q  r     q if p else r
+?.  p  q  r     r if p else q
+?-              switch for value of p
+    ?-(p p1 q1, p2 q2, p3 q3)
+?+              switch with default result q
+    ?+(p q p1 q1, p2 q2, p3 q3)
+?=  p  q        true if q is in tile p
 ?|  |(p1 p2 p3) "or" for loobeans in p
+?&  &(p1 p2 p3) "and" for loobeans in p
+?<  p  q        assert p is no, produce q
+?>  p  q        assert p is yes, produce q
+?^  p  q  r     r if p is p's bunt, else q
+?@  p  q  r     q if p is atom, else r
+?~  p  q  r     q if p is ~, else r
+?!  !p          logical not of p
+
+
+zap: Special operations
+
+!_  !p          path / location trace
+!.  p  q        insert q as p type constant
+!/  p  q        report subject as error
+!>  p           produce vase of p
+!;  p  q        q as [type noun] pair, type p
+!=  p           show Nock formula for p
+!?  p           restrict Hoon version to p
+!!              crash if evaluated
 
 # vim:textwidth=45:formatoptions+=t
