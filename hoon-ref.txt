@@ -1,22 +1,5 @@
-=============================================
            HOON REFERENCE CARD
                   2015
-
-Pronunciation
-
-ace  space         gap  newline or 2 spaces
-bar  |   dot  .    ket  ^    ser  ]
-bas  \   fas  /    lus  +    sig  ~
-buc  $   gal  <    pam  &    soq  '
-cab  _   gar  >    pat  @    tar  *
-cen  %   hax  #    pel  (    tec  `
-col  :   hep  -    per  )    tis  =
-com  ,   kel  {    sel  [    wut  ?
-doq  "   ker  }    sem  ;    zap  !
-
---  shed   ->  lark   +>  dark   ==  stet
-++  slus   -<  lush   +<  dish
-
 
 bar: Core construction
 
@@ -44,7 +27,9 @@ bar: Core construction
 |.  p       generic dry trap (thunk)
 |-  p       kick after construction (loop)
 |?  p       dry trap, payload is hidden
-buc: Tile construction
+
+
+buc: Tile construction
 
 $?  ?(p q)      produce a fern fork
 $|  p  q        produce a reed of tiles p, q
@@ -58,27 +43,7 @@ $^  p           a normalizing gate, herb
 $+  p  q        gate from p to q signature
 $@  p@q         whip wing p into tile q
 $!              axil bunt (internal)
-
-
-col: Tuple construction
-
-:-  [p q]       tuple of two elements
-:_  p  q        build reversed tuple [q p]
-:+  p  q  r     tuple of three elements
-:^  p  q        tuple of four elements
-    r  s
-:*  i.p         arbitrary length tuple
-    i.t.p       [i.p i.t.p i.t.t.p]
-    i.t.t.p
-    ==
-:~  i.p         null-terminated tuple
-    i.t.p       ~[i.p i.t.p i.t.t.p]
-    i.t.t.p
-    ==
-;/  p           tuple for interpolation
-
-
-cen: Pulling arms and wings
+cen: Pulling arms and wings
 
 %=  p           eval p with changes from q
     p1.q  q1.q  %=(p p1.q q1.q, p2.q q2.q)
@@ -98,6 +63,24 @@ cen: Pulling arms and wings
 %:  p  q        slam p with one argument
 %+  p  q  r     slam p with two arguments
 %^  p  q  r  s  slam p with three arguments
+
+
+col: Tuple construction
+
+:-  [p q]       tuple of two elements
+:_  p  q        build reversed tuple [q p]
+:+  p  q  r     tuple of three elements
+:^  p  q        tuple of four elements
+    r  s
+:*  i.p         arbitrary length tuple
+    i.t.p       [i.p i.t.p i.t.t.p]
+    i.t.t.p
+    ==
+:~  i.p         null-terminated tuple
+    i.t.p       ~[i.p i.t.p i.t.t.p]
+    i.t.t.p
+    ==
+;/  p           tuple for interpolation
 
 
 dot: Nock operators
@@ -126,20 +109,7 @@ ket: Type operations
 ^~  p           compile time execute p
 
 
-sig: Hints to interpreter
-
-~$  p  q        label q as p for profiling
-~|  p  q        log p in stack trace of q
-~_  p  q        insert tank p in trace of q
-~%  p  q  ~  s  jet hint for core s
-~/  p  q        book arm jet
-~+  p           memoize computation p
-~&  p  q  r     print q at level p before r
-~=  p  q        product of q may equal noun p
-~!  p  q        show type of p if q fails
-~>  p  q        apply hint p to q
-~<  p  q        compute q, then apply hint p
-sem: Composition
+sem: Composition
 
 ;:  p           fold over q tuple with gate p
     i.q         :(p i.q i.t.q i.t.t.q)
@@ -155,7 +125,20 @@ sig: Hints to interpreter
 ;%  %{p}        pass child nodes to gate
 
 
-tis: Subject modification
+sig: Hints to interpreter
+
+~$  p  q        label q as p for profiling
+~|  p  q        log p in stack trace of q
+~_  p  q        insert tank p in trace of q
+~%  p  q  ~  s  jet hint for core s
+~/  p  q        book arm jet
+~+  p           memoize computation p
+~&  p  q  r     print q at level p before r
+~=  p  q        product of q may equal noun p
+~!  p  q        show type of p if q fails
+~>  p  q        apply hint p to q
+~<  p  q        compute q, then apply hint p
+tis: Subject modification
 
 =>  p  q        use p as subject of q
 =<  p:q         use q as subject of p
@@ -202,5 +185,54 @@ zap: Special operations
 !=  p           show Nock formula for p
 !?  p           restrict Hoon version to p
 !!              crash if evaluated
+Pronunciation
 
-# vim:textwidth=45:formatoptions+=t
+ace  space         gap  newline or 2 spaces
+bar  |   dot  .    ket  ^    ser  ]
+bas  \   fas  /    lus  +    sig  ~
+buc  $   gal  <    pam  &    soq  '
+cab  _   gar  >    pat  @    tar  *
+cen  %   hax  #    pel  (    tec  `
+col  :   hep  -    per  )    tis  =
+com  ,   kel  {    sel  [    wut  ?
+doq  "   ker  }    sem  ;    zap  !
+
+--  shed   ->  lark   +>  dark   ==  stet
+++  slus   -<  lush   +<  dish
+
+
+Odors
+
+@c              UTF-32 codepoint
+@d              date
+  @da           absolute date
+  @dr           relative date (ie, timespan)
+@f              yes or no (inverse boolean)
+@n              nil
+@p              phonemic base
+@r              IEEE floating-point
+  @rd           double precision  (64 bits)
+  @rh           half precision (16 bits)
+  @rq           quad precision (128 bits)
+  @rs           single precision (32 bits)
+@s              signed integer, sign bit low
+  @sb           signed binary
+  @sd           signed decimal
+  @sv           signed base32
+  @sw           signed base64
+  @sx           signed hexadecimal
+@t              UTF-8 text (cord)
+  @ta           ASCII text (span)
+    @tas        ASCII symbol (term)
+@u              unsigned integer
+  @ub           unsigned binary
+  @ud           unsigned decimal
+  @uv           unsigned base32
+  @uw           unsigned base64
+  @ux           unsigned hexadecimal
+
+http://urbit.org/
+
+This document is public domain
+
+= vim:textwidth=45:formatoptions+=t =========
