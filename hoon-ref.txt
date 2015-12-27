@@ -44,12 +44,20 @@ bar: Core construction
 |.  p       generic dry trap (thunk)
 |-  p       kick after construction (loop)
 |?  p       dry trap, payload is hidden
-dot: Nock operators
+buc: Tile construction
 
-.+  +(p)    increment p
-.=  =(p q)  test p and q for equality
-.^  p       load file from global namespace
-.*  p       execute Nock expression
+$?  ?(p q)      produce a fern fork
+$|  p  q        produce a reed of tiles p, q
+$&  p  q        produce a bush
+$:  [p q]       construct tile of a tuple
+$_  _p          produce a weed
+$=  p  q        produce a bark, face to noun
+$*  *p          produce default value of p
+$,  ,p          a normalizing gate, leaf
+$^  p           a normalizing gate, herb
+$+  p  q        gate from p to q signature
+$@  p@q         whip wing p into tile q
+$!              axil bunt (internal)
 
 
 col: Tuple construction
@@ -94,7 +102,22 @@ cen: Pulling arms and wings
 %cnzy p         pull limb p from subject
 %cnzz p         pull wing p from subject
 
-ket: Type operations
+
+dot: Nock operators
+
+.+  +(p)    increment p
+.=  =(p q)  test p and q for equality
+.^  p       load file from global namespace
+.*  p       execute Nock expression
+
+
+hax: Pretty printing
+
+#<  <i.p i.t.p i.t.t.p>  prettyprint a tape
+#>  >i.p i.t.p i.t.t.p<  prettyprint a tank
+
+
+ket: Type operations
 
 ^-  `p`q        cast q to bunt p
 ^+  p  q        cast q to type of p
@@ -104,6 +127,7 @@ cen: Pulling arms and wings
 ^?  p           convert gold core to lead
 ^.  p  q        cast q to type of (p q)
 ^~  p           compile time execute p
+
 
 sig: Hints to interpreter
 
@@ -118,10 +142,20 @@ sig: Hints to interpreter
 ~!  p  q        show type of p if q fails
 ~>  p  q        apply hint p to q
 ~<  p  q        compute q, then apply hint p
+sem: Composition
 
-hax: Pretty printing
-
-#<  <i.p i.t.p i.t.t.p>  prettyprint a tape
-#>  >i.p i.t.p i.t.t.p<  prettyprint a tank
+;:  p           fold over q tuple with gate p
+    i.q         :(p i.q i.t.q i.t.t.q)
+    i.t.q  i.t.t.q  ==
+;~  p           compose gates under monad
+    i.q
+    i.t.q  i.t.t.q  ==
+;;  p  q        assert q as fixpoint of p
+;"  "p"         construct a string
+;-  -{a}        interpolate a tape
+;+  +{a}        interpolate a manx
+;*  *{a}        interpolate a list of marl
+;%  %{p}        pass child nodes to gate
+%smzz  ;p;      sail templating
 
 # vim:textwidth=45:formatoptions+=t
