@@ -158,4 +158,32 @@ sig: Hints to interpreter
 ;%  %{p}        pass child nodes to gate
 %smzz  ;p;      sail templating
 
+
+tis: Subject modification
+
+=>  p  q        use p as subject of q
+=<  p:q         use q as subject of p
+=+  p  q        push p in subject for q
+=-  p  q        push q in subject for p
+=|  p  q        push bunt of p in subject
+=*  p  q  r     alias p to q for r
+=.  p  q  r     set p to q in subject for r
+=:  p.i.p  q.i.p  batch change subject for q
+    p.i.t.p  q.i.t.p
+    ==  q
+=^  p  q  r  s  state machine,
+                update q with r, store in p
+=~  i.p         compose a list of twigs
+    i.t.p  i.t.t.p  ==
+
+
+wut: Conditionals
+
+?:  p  q  r     if p then q else r
+?.
+?-
+?+
+?=
+?|  |(p1 p2 p3) "or" for loobeans in p
+
 # vim:textwidth=45:formatoptions+=t
