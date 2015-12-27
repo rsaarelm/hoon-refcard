@@ -1,3 +1,4 @@
+=============================================
            HOON REFERENCE CARD
                   2015
 
@@ -43,31 +44,30 @@ bar: Core construction
 |.  p       generic dry trap (thunk)
 |-  p       kick after construction (loop)
 |?  p       dry trap, payload is hidden
-
-
-dot: Nock operators
+dot: Nock operators
 
 .+  +(p)    increment p
 .=  =(p q)  test p and q for equality
 .^  p       load file from global namespace
 .*  p       execute Nock expression
-
+
+
 col: Tuple construction
 
-:-  [p q]    tuple of two elements
-:_  q  p     reversed tuple of two elements
-:+  p  q  r  tuple of three elements
-:^  p  q     tuple of four elements
+:-  [p q]       tuple of two elements
+:_  p  q        build reversed tuple [q p]
+:+  p  q  r     tuple of three elements
+:^  p  q        tuple of four elements
     r  s
-:*  i.p      arbitrary length tuple
-    i.t.p    [i.p i.t.p i.t.t.p]
+:*  i.p         arbitrary length tuple
+    i.t.p       [i.p i.t.p i.t.t.p]
     i.t.t.p
     ==
-:~  i.p      null-terminated tuple
-    i.t.p    ~[i.p i.t.p i.t.t.p]
+:~  i.p         null-terminated tuple
+    i.t.p       ~[i.p i.t.p i.t.t.p]
     i.t.t.p
     ==
-;/  p        tuple for interpolation
+;/  p           tuple for interpolation
 
 
 cen: Pulling arms and wings
@@ -84,9 +84,44 @@ cen: Pulling arms and wings
     p1.r  q1.r  %*(p q p1.r q1.r, p2.r q2.r)
     p2.r  q2.r
     ==
+%-  (p q)       call p with arguments q
+%.  p  q        %-(q p)
+%~  ~(p q r)    call p with q with sample r
+%:  p  q        slam p with one argument
+%+  p  q  r     slam p with two arguments
+%^  p  q  r  s  slam p with three arguments
 
-%-
-%+
-%^
+%cnzy p         pull limb p from subject
+%cnzz p         pull wing p from subject
+
+ket: Type operations
+
+^-  `p`q        cast q to bunt p
+^+  p  q        cast q to type of p
+^=  p=q         wrap q in toga p
+^|  p           convert gold core to iron
+^&  p           convert gold core to zinc
+^?  p           convert gold core to lead
+^.  p  q        cast q to type of (p q)
+^~  p           compile time execute p
+
+sig: Hints to interpreter
+
+~$  p  q        label q as p for profiling
+~|  p  q        log p in stack trace of q
+~_  p  q        insert tank p in trace of q
+~%  p  q  ~  s  jet hint for core s
+~/  p  q        book arm jet
+~+  p           memoize computation p
+~&  p  q  r     print q at level p before r
+~=  p  q        product of q may equal noun p
+~!  p  q        show type of p if q fails
+~>  p  q        apply hint p to q
+~<  p  q        compute q, then apply hint p
+
+hax: Pretty printing
+
+#<  <i.p i.t.p i.t.t.p>  prettyprint a tape
+#>  >i.p i.t.p i.t.t.p<  prettyprint a tank
 
 # vim:textwidth=45:formatoptions+=t
