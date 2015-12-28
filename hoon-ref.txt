@@ -45,7 +45,7 @@ p(q1 Q1, ...)  (%=) eval p with changes
                     product to type of p
 %*(p q r1 R1, ...)  pull p from q, eval with
                     changes
-(p q)      (%-) call p with arguments q
+(p q1 ...) (%-) call p with arguments q
 %.(p q)         call q with arguments p
 ~(p q r)   (%~) pull p from q with sample r
 %:(p q)         slam p with one argument
