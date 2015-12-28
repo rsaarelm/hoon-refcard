@@ -102,8 +102,8 @@ sem: Composition
 ~|(p q)         log p in stack trace of q
 ~_(p q)         insert tank p in trace of q
 ~%  p  q  ==    jet hint for core s
-  r1  s1  ...
-  ==  t
+  r1  R1  ...  ==  s
+~%  p  q  ~  s
 ~/(p q)         book arm jet
 ~+(p)           memoize computation p
 ~&(p q r)       print q at level p before r
@@ -124,8 +124,7 @@ p:q        (=<) use q as subject of p
 =*(p q r)       alias p to q for r
 =.(p q r)       set p to q in subject for r
 =:  p1  P1      batch change subject for q
-    ...
-    ==  q
+    ...  ==  q
 =^(p q r s)     state machine,
                 update q with r, store in p
 =~(p1 ...)      compose a list of twigs
