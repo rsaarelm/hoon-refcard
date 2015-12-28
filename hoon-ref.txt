@@ -3,66 +3,58 @@
 
 bar: Core construction
 
-|%               generic core with arms
-    ++  p.n.q    dry or wet arms
-      q.n.q
-    +-  p.n.l.q
-      q.n.l.q
+|%  ++  p1  q1  generic core with
+    +-  p2  q2  dry or wet arms
+    ...
     --
 |_  p            door with sample
-    ++  p.n.q    dry arms only
-      q.n.q
+    ++  q1  r1   dry arms only
+    ...
     --
 |/  p            door with tile
-    +-  p.n.q    wet arms
-      q.n.q
+    +-  q1  r1   wet arms
+    ...
     --
 |^  p            kicked book
-    ++  p.n.q    like |- with arms
-      q.n.q
+    ++  q1  r1   like |- with arms
+    ...
     --
-|=  p  q    dry gate, arm is $
-|+  p  q    dry gate, sample p is private
-|*  p  q    wet gate, arm is $
-|.  p       generic dry trap (thunk)
-|-  p       kick after construction (loop)
-|?  p       dry trap, payload is hidden
+|=(p q)     dry gate, arm is $
+|+(p q)     dry gate, sample p is private
+|*(p q)     wet gate, arm is $
+|.(p)       generic dry trap (thunk)
+|-(p)       kick after construction (loop)
+|?(p)       dry trap, payload is hidden
 
 
 buc: Tile construction
 
-$?  ?(p q)      produce a fern fork
-$|  p  q        produce a reed of tiles p, q
-$&  p  q        produce a bush
-$:  [p q]       construct tile of a tuple
-$_  _p          produce a weed
-$=  p  q        produce a bark, face to noun
-$*  *p          produce default value of p
-$,  ,p          a normalizing gate, leaf
-$^  p           a normalizing gate, herb
-$+  p  q        gate from p to q signature
-$@  p@q         whip wing p into tile q
-$!              axil bunt (internal)
-cen: Pulling arms and wings
+?(p q)     ($?) produce a fern fork
+$|(p q)         produce a reed of tiles p, q
+$&(p q)         produce a bush
+[p q]      ($:) construct tile of a tuple
+_p         ($_) produce a weed
+$=(p q)         produce a bark, face to noun
+*p         ($*) produce default value of p
+,p         ($,) a normalizing gate, leaf
+$^(p)           a normalizing gate, herb
+$+(p q)         gate from p to q signature
+p@q        ($@) whip wing p into tile q
 
-%=  p           eval p with changes from q
-    p1.q  q1.q  %=(p p1.q q1.q, p2.q q2.q)
-    p2.q  q2.q  p(p1.q q1.q, p2.q q2.q)
-    ==
-%_  p           eval, then cast back to type
-    p1.q  q1.q  %_(p p1.q q1.q, p2.q q2.q)
-    p2.q  q2.q
-    ==
-%*  p  q        pull p from q with changes r
-    p1.r  q1.r  %*(p q p1.r q1.r, p2.r q2.r)
-    p2.r  q2.r
-    ==
-%-  (p q)       call p with arguments q
-%.  p  q        %-(q p)
-%~  ~(p q r)    call p with q with sample r
-%:  p  q        slam p with one argument
-%+  p  q  r     slam p with two arguments
-%^  p  q  r  s  slam p with three arguments
+
+cen: Pulling arms and wings
+
+p(q1 r1, ...)  (%=) eval p with changes
+%_(p q1 r1, ...)    eval with changes, cast
+                    product to type of p
+%*(p q r1 s1, ...)  pull p from q, eval with
+                    changes
+(p q)      (%-) call p with arguments q
+%.(p q)         call q with arguments p
+~(p q r)   (%~) pull p from q with sample r
+%:(p q)         slam p with one argument
+%+(p q r)       slam p with two arguments
+%^(p q r s)     slam p with three arguments
 
 
 col: Tuple construction
