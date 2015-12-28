@@ -3,22 +3,18 @@
 
 bar: Core construction
 
-|%  ++  p1  P1  generic core with
+|%  ++  p1  P1  build core
     +-  p2  P2  dry or wet arms
-    ...
-    --
+    ...  --
 |_  p           door with sample
     ++  q1  Q1  dry arms only
-    ...
-    --
+    ...  --
 |/  p           door with tile
     +-  q1  Q1  wet arms
-    ...
-    --
+    ...  --
 |^  p           kicked book
     ++  q1  Q1  like |- with arms
-    ...
-    --
+    ...  --
 |=(p q)     dry gate, arm is $
 |+(p q)     dry gate, sample p is private
 |*(p q)     wet gate, arm is $
@@ -76,12 +72,6 @@ dot: Nock operators
 .*(p q)         Nock formula q on subject p
 
 
-hax: Pretty printing
-
-<p1 ...>   (#<) prettyprint into a tape
->p1 ...<   (#>) prettyprint into a tank
-
-
 ket: Type operations
 
 `p`q       (^-) cast q to bunt p
@@ -106,7 +96,7 @@ sem: Composition
 %{p}        (;%) pass child nodes to gate
 
 
-sig: Hints to interpreter
+sig: Hints to interpreter
 
 ~$(p q)         label q as p for profiling
 ~|(p q)         log p in stack trace of q
@@ -114,11 +104,10 @@ sig: Hints to interpreter
 ~%  p  q  ==    jet hint for core s
   r1  s1  ...
   ==  t
-
 ~/(p q)         book arm jet
 ~+(p)           memoize computation p
 ~&(p q r)       print q at level p before r
-                p is empty | > | >> | >>>
+                p = <empty> | > | >> | >>>
 ~=(p q)         product of q may equal noun p
 ~!(p q)         show type of p if q fails
 ~>(p q)         apply hint p to q
@@ -144,34 +133,38 @@ p:q        (=<) use q as subject of p
 
 wut: Conditionals
 
-?:  p  q  r     q if p else r
-?.  p  q  r     r if p else q
-?-              switch for value of p
-    ?-(p p1 q1, p2 q2, p3 q3)
-?+              switch with default result q
-    ?+(p q p1 q1, p2 q2, p3 q3)
-?=  p  q        true if q is in tile p
-?|  |(p1 p2 p3) "or" for loobeans in p
-?&  &(p1 p2 p3) "and" for loobeans in p
-?<  p  q        assert p is no, produce q
-?>  p  q        assert p is yes, produce q
-?^  p  q  r     r if p is p's bunt, else q
-?@  p  q  r     q if p is atom, else r
-?~  p  q  r     q if p is ~, else r
-?!  !p          logical not of p
+?:(p q r)          q if p else r
+?.(p q r)          r if p else q
+?-(p q1 Q1, ...)   switch for value of p
+?+(p q r1 R1, ...) switch with default q
+?=(p q)            true if q is in tile p
+|(p1 ...)     (?|) "or" over p
+&(p1 ...)     (?&) "and" over p
+?<(p q)            assert p is no, produce q
+?>(p q)            assert p is yes, produce q
+?^(p q r)          r if p is p's bunt, else q
+?@(p q r)          q if p is atom, else r
+?~(p q r)          q if p is ~, else r
+!p   s        (?!) logical not of p
+
+hax: Pretty printing
+
+<p1 ...>   (#<) prettyprint into a tape
+>p1 ...<   (#>) prettyprint into a tank
 
 
 zap: Special operations
 
-!_  !p          path / location trace
-!.  p  q        insert q as p type constant
-!/  p  q        report subject as error
-!>  p           produce vase of p
-!;  p  q        q as [type noun] pair, type p
-!=  p           show Nock formula for p
-!?  p           restrict Hoon version to p
+!,(p q)         insert q as p type constant
+!/(p q)         report subject as error
+!>(p)           produce vase of p
+!;(p q)         q as [type noun] pair, type p
+!=(p)           show Nock formula for p
+!?(p)           restrict Hoon version to p
 !!              crash if evaluated
-Pronunciation
+
+
+Pronunciation
 
 ace  space         gap  newline or 2 spaces
 bar  |   dot  .    ket  ^    ser  ]
@@ -185,9 +178,7 @@ doq  "   ker  }    sem  ;    zap  !
 
 --  shed   ->  lark   +>  dark   ==  stet
 ++  slus   -<  lush   +<  dish
-
-
-Odors
+Odors
 
 @c              UTF-32 codepoint
 @d              date
@@ -216,6 +207,20 @@ Odors
   @uv           unsigned base32
   @uw           unsigned base64
   @ux           unsigned hexadecimal
+
+Odor size suffixes
+
+Eg. '@tN': 1 kilobyte or less of UTF-8
+
+A   1 bit      J   64 bytes    S   32K
+B   2 bits     K   128 bytes   T   64K
+C   4 bits     L   256 bytes   U   128K
+D   1 byte     M   512 bytes   V   256K
+E   2 bytes    N   1K          W   512K
+F   4 bytes    O   2K          X   1MB
+G   8 bytes    P   4K          Y   2MB
+H   16 bytes   Q   8K          Z   4MB
+I   32 bytes   R   16K
 Nock 5K
 
 nock(a)             *a
