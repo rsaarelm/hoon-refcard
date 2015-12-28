@@ -3,20 +3,20 @@
 
 bar: Core construction
 
-|%  ++  p1  q1  generic core with
-    +-  p2  q2  dry or wet arms
+|%  ++  p1  P1  generic core with
+    +-  p2  P2  dry or wet arms
     ...
     --
-|_  p            door with sample
-    ++  q1  r1   dry arms only
+|_  p           door with sample
+    ++  q1  Q1  dry arms only
     ...
     --
-|/  p            door with tile
-    +-  q1  r1   wet arms
+|/  p           door with tile
+    +-  q1  Q1  wet arms
     ...
     --
-|^  p            kicked book
-    ++  q1  r1   like |- with arms
+|^  p           kicked book
+    ++  q1  Q1  like |- with arms
     ...
     --
 |=(p q)     dry gate, arm is $
@@ -44,10 +44,10 @@ p@q        ($@) whip wing p into tile q
 
 cen: Pulling arms and wings
 
-p(q1 r1, ...)  (%=) eval p with changes
-%_(p q1 r1, ...)    eval with changes, cast
+p(q1 Q1, ...)  (%=) eval p with changes
+%_(p q1 Q1, ...)    eval with changes, cast
                     product to type of p
-%*(p q r1 s1, ...)  pull p from q, eval with
+%*(p q r1 R1, ...)  pull p from q, eval with
                     changes
 (p q)      (%-) call p with arguments q
 %.(p q)         call q with arguments p
@@ -59,93 +59,87 @@ p(q1 r1, ...)  (%=) eval p with changes
 
 col: Tuple construction
 
-:-  [p q]       tuple of two elements
-:_  p  q        build reversed tuple [q p]
-:+  p  q  r     tuple of three elements
-:^  p  q        tuple of four elements
-    r  s
-:*  i.p         arbitrary length tuple
-    i.t.p       [i.p i.t.p i.t.t.p]
-    i.t.t.p
-    ==
-:~  i.p         null-terminated tuple
-    i.t.p       ~[i.p i.t.p i.t.t.p]
-    i.t.t.p
-    ==
-;/  p           tuple for interpolation
+:-(p q)         tuple of two elements
+:_(q p)         build reversed tuple [q p]
+:+(p q r)       tuple of three elements
+:^(p q r s)     tuple of four elements
+[p1 ...]   (:*) arbitrary length tuple
+~[p1 ...]  (:~) null-terminated tuple
+:/(p)           tuple for interpolation
 
 
 dot: Nock operators
 
-.+  +(p)    increment p
-.=  =(p q)  test p and q for equality
-.^  p       load file from global namespace
-.*  p       execute Nock expression
++(p)       (.+) increment p
+=(p q)     (.=) test p and q for equality
+.^(p)           load file in userspace Nock
+.*(p q)         Nock formula q on subject p
 
 
 hax: Pretty printing
 
-#<  <i.p i.t.p i.t.t.p>  prettyprint a tape
-#>  >i.p i.t.p i.t.t.p<  prettyprint a tank
+<p1 ...>   (#<) prettyprint into a tape
+>p1 ...<   (#>) prettyprint into a tank
 
 
 ket: Type operations
 
-^-  `p`q        cast q to bunt p
-^+  p  q        cast q to type of p
-^=  p=q         wrap q in toga p
-^|  p           convert gold core to iron
-^&  p           convert gold core to zinc
-^?  p           convert gold core to lead
-^.  p  q        cast q to type of (p q)
-^~  p           compile time execute p
+`p`q       (^-) cast q to bunt p
+^+(p q)         cast q to type of p
+p=q        (^=) wrap q in toga p
+^|(p)           convert gold core to iron
+^&(p)           convert gold core to zinc
+^?(p)           convert gold core to lead
+^.(p q)         cast q to type of (p q)
+^~(p)           compile time execute p
 
 
 sem: Composition
 
-;:  p           fold over q tuple with gate p
-    i.q         :(p i.q i.t.q i.t.t.q)
-    i.t.q  i.t.t.q  ==
-;~  p           compose gates under monad
-    i.q
-    i.t.q  i.t.t.q  ==
-;;  p  q        assert q as fixpoint of p
-;"  "p"         construct a string
-;-  -{a}        interpolate a tape
-;+  +{a}        interpolate a manx
-;*  *{a}        interpolate a list of marl
-;%  %{p}        pass child nodes to gate
+:(p q1 ...) (;:) fold over q with gate p
+;~(p q1 ...)     compose gates under monad
+;;(p q)          assert q as fixpoint of p
+"p"         (;") construct a string
+-{p}        (;-) interpolate a tape
++{p}        (;+) interpolate a manx
+*{p}        (;*) interpolate a list of marl
+%{p}        (;%) pass child nodes to gate
 
 
 sig: Hints to interpreter
 
-~$  p  q        label q as p for profiling
-~|  p  q        log p in stack trace of q
-~_  p  q        insert tank p in trace of q
-~%  p  q  ~  s  jet hint for core s
-~/  p  q        book arm jet
-~+  p           memoize computation p
-~&  p  q  r     print q at level p before r
-~=  p  q        product of q may equal noun p
-~!  p  q        show type of p if q fails
-~>  p  q        apply hint p to q
-~<  p  q        compute q, then apply hint p
-tis: Subject modification
+~$(p q)         label q as p for profiling
+~|(p q)         log p in stack trace of q
+~_(p q)         insert tank p in trace of q
+~%  p  q  ==    jet hint for core s
+  r1  s1  ...
+  ==  t
 
-=>  p  q        use p as subject of q
-=<  p:q         use q as subject of p
-=+  p  q        push p in subject for q
-=-  p  q        push q in subject for p
-=|  p  q        push bunt of p in subject
-=*  p  q  r     alias p to q for r
-=.  p  q  r     set p to q in subject for r
-=:  p.i.p  q.i.p  batch change subject for q
-    p.i.t.p  q.i.t.p
+~/(p q)         book arm jet
+~+(p)           memoize computation p
+~&(p q r)       print q at level p before r
+                p is empty | > | >> | >>>
+~=(p q)         product of q may equal noun p
+~!(p q)         show type of p if q fails
+~>(p q)         apply hint p to q
+~<(p q)         compute q, then apply hint p
+
+
+tis: Subject modification
+
+=>(p q)         use p as subject of q
+p:q        (=<) use q as subject of p
+=+(p q)         push p in subject for q
+=-(p q)         push q in subject for p
+=|(p q)         push bunt of p in subject
+=*(p q r)       alias p to q for r
+=.(p q r)       set p to q in subject for r
+=:  p1  P1      batch change subject for q
+    ...
     ==  q
-=^  p  q  r  s  state machine,
+=^(p q r s)     state machine,
                 update q with r, store in p
-=~  i.p         compose a list of twigs
-    i.t.p  i.t.t.p  ==
+=~(p1 ...)      compose a list of twigs
 
 
 wut: Conditionals
