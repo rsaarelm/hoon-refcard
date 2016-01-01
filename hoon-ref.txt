@@ -144,7 +144,7 @@ wut: Conditionals
 ?^(p q r)          r if p is p's bunt, else q
 ?@(p q r)          q if p is atom, else r
 ?~(p q r)          q if p is ~, else r
-!p   s        (?!) logical not of p
+!p            (?!) logical not of p
 
 hax: Pretty printing
 
