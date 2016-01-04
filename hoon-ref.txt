@@ -25,6 +25,7 @@ bar: Core construction
 
 buc: Tile construction
 
+$%(p1 ...)      tagged union
 ?(p q)     ($?) produce a fern fork
 $|(p q)         produce a reed of tiles p, q
 $&(p q)         produce a bush
