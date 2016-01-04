@@ -25,14 +25,14 @@ bar: Core construction
 
 buc: Tile construction
 
-$%(p1 ...)      tagged union
-?(p q)     ($?) produce a fern fork
-$|(p q)         produce a reed of tiles p, q
-$&(p q)         produce a bush
+$%(p1 ...)      kelp: tagged union
+?(p q)     ($?) fern: nonempty list of cases
+$|(p q)         reed: fork atom p, cell q
+$&(p q)         bush: cell head | atom head
 [p q]      ($:) construct tile of a tuple
-_p         ($_) produce a weed
-$=(p q)         produce a bark, face to noun
-*p         ($*) produce default value of p
+_p         ($_) weed: tile by example p
+$=(p q)         bark: wrap face p to tile q
+*p         ($*) bunt: default value of tile
 ,p         ($,) a normalizing gate, leaf
 $^(p)           a normalizing gate, herb
 $+(p q)         gate from p to q signature
