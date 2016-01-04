@@ -164,9 +164,21 @@ zap: Special operations
 !!              crash if evaluated
 
 
+Tree addressing
+
+              +1
+               .
+      +2              +3
+       -               +
+  +4      +5      +6      +7
+  -<      ->      +<      +>
+ +8  +9 +10 +11 +12 +13 +14 +15
+-<- -<+ ->- ->+ +<- +<+ +>- +>+
+
+
 Pronunciation
 
-ace  space         gap  newline or 2 spaces
+ace  space         gap  newline or 2+ spaces
 bar  |   dot  .    ket  ^    ser  ]
 bas  \   fas  /    lus  +    sig  ~
 buc  $   gal  <    pam  &    soq  '
