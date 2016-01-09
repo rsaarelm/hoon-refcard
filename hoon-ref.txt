@@ -191,8 +191,13 @@ doq  "   ker  }    sem  ;    zap  !
 
 --  shed   ->  lark   +>  dark   ==  stet
 ++  slus   -<  lush   +<  dish
-Odors
+Types and odors
 
+~               null
+*               noun (anything)
+^               cell
+?               loobean, & is yes, | is no
+@               atom
 @c              UTF-32 codepoint
 @d              date
   @da           absolute date
